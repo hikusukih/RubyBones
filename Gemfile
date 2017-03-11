@@ -45,3 +45,4 @@ end
 
 gem 'devise', '~> 4.2'
 gem 'rails_admin', '~> 1.1.1'
+gem 'cancancan', '~> 1.16'
