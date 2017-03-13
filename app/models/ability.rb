@@ -3,11 +3,14 @@ class Ability
 
   def initialize(user)
 
-    if user
-      can :dashboard                  # allow access to dashboard
-      can :access, :rails_admin
-      can :manage, :all   
+    @user = user || User.new # for guest users
+    # for each of the roles, call the method which gives its permissions
+    @user.roles.each { |role| send(role) }
+
+    if @user.roles.size == 0
+        can :read, :all
     end
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -35,4 +38,22 @@ class Ability
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   end
+
+  def banned
+  end
+
+  def reader
+  end
+
+  def contributor
+    can :dashboard            # allow access to dashboard
+    can :access, :rails_admin
+    can :manage, Post
+  end
+
+  def admin
+    contributor
+    can :manage, :all   
+  end
+
 end

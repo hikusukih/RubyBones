@@ -42,4 +42,22 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  # https://github.com/sferik/rails_admin/wiki/Fields
+  config.model 'User' do
+    # Update which fields are shown for a User listing
+    list do
+     field :email
+     field :current_sign_in_at
+     field :sign_in_count
+     field :created_at
+    end
+    # Update which fields are shown when editing a User
+    # partials are stored in app/views/rails_admin/main/
+    edit do
+      configure :roles_mask do
+        partial "roles_mask"
+      end
+    end      
+  end
 end
