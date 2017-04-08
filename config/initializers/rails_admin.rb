@@ -55,6 +55,12 @@ RailsAdmin.config do |config|
     # Update which fields are shown when editing a User
     # partials are stored in app/views/rails_admin/main/
     edit do
+      #field :roles_mask do
+      #  render do
+      #    bindings[:view].render :partial => 'roles_mask', :locals => {:field => self, :form => bindings[:form]}
+      #  end
+      #end
+
       configure :roles_mask do
         partial "roles_mask"
       end
