@@ -1,5 +1,6 @@
 <% for role in User::ROLES %>
-  <%= check_box_tag "user[roles][#{role}]", role, form.object.roles.include?(role), {:name => "user[roles][]"}%>
+  <%= check_box_tag "user[roles][#{role}]", role, form.object.has_role?(role), {:name => "user[roles][]"}%>
   <%= label_tag "user_roles_#{role}", role.to_s.humanize %><br />
 <% end %>
 <%= hidden_field_tag "user[roles][]", "" %>
+<%= form.text_field :roles_mask %>
