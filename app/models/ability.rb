@@ -43,6 +43,7 @@ class Ability
   end
 
   def reader
+    can :access, Post
   end
 
   def contributor

@@ -5,3 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#dMb TODO: Before this hits Prod, disable this seed data!
+User.where(email: 'admin@example.com').destroy_all
+User.create(email: 'admin@example.com', roles_mask: 1, 
+  password: "password", password_confirmation: "password")
+
+
+User.where(email: 'contributor@example.com').destroy_all
+User.create(email: 'contributor@example.com', roles_mask: 2,
+  password:"password", password_confirmation:"password")
+
+
+User.where(email: 'reader@example.com').destroy_all
+User.create(email: 'reader@example.com', roles_mask: 4,
+  password:"password", password_confirmation:"password")
