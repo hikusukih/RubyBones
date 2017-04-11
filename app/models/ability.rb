@@ -39,20 +39,26 @@ class Ability
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
   end
 
-  def banned
-  end
-
+  # Readers can read any object, but can't modify anything.
   def reader
+    can :read, :all
   end
 
+  # Contributors can read anything
+  #   and also see the dashboard
+  #   and can manage data.
+  # Probably want a controller for finer grain
+  #   determination about user trustworthiness
+  #   when deciding whose input data to use
   def contributor
+    reader
     can :dashboard            # allow access to dashboard
     can :access, :rails_admin
     can :manage, Post
   end
 
+  # Administrators can do anything.
   def admin
-    contributor
     can :manage, :all   
   end
 

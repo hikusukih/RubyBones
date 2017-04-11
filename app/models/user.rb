@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLES = %i[admin contributor reader banned]
+  ROLES = %i[admin contributor reader]
 
   def roles=(roles)
     #roles = [*roles].map { |r| r.to_sym }
